@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Pair;
 import models.Driver;
+import models.DriverModel;
 
 public class BuyQuoteController implements Initializable {
 
@@ -51,7 +52,7 @@ public class BuyQuoteController implements Initializable {
 
 	}
 
-	private Driver driverObj;
+	private DriverModel driverObj;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -111,7 +112,7 @@ public class BuyQuoteController implements Initializable {
 		lblUserName.setText(driverObj.getFirst_name() + " " + driverObj.getLast_name());
 	}
 
-	public void setDriver(Driver driver) {
+	public void setDriver(DriverModel driver) {
 		driverObj = driver;
 		// lblUserName.setText(driver.getFirst_name() + " " + driver.getLast_name());
 	}

@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.*;
+import utility.HashPassword;
 
 import Dao.DbConnect;
 
@@ -33,17 +34,21 @@ public class AdminLoginModel {
 	{
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String query ="select * from mehul_parekh_adminlogin where username = ? and password = ?";
+		String query ="select * from mehul_parekh_adminlogin where username = ?";
 		try 
 		{
 			stmt = connection.prepareStatement(query);
 			stmt.setString(1,user);
-			stmt.setString(2,pass);
+			//stmt.setString(2,pass);
 			
 			rs = stmt.executeQuery();
 			if(rs.next())
 			{
-				return true;
+				String hashedPwd = rs.getString("password");
+				
+				return HashPassword.CheckIfPasswordCorrect(pass, hashedPwd);
+				
+				//return true;
 			}
 			else
 			{

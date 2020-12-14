@@ -23,6 +23,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import models.Car;
 import models.Driver;
+import models.DriverModel;
 
 public class GetAQuoteController implements Initializable {
 
@@ -90,7 +91,7 @@ public class GetAQuoteController implements Initializable {
 	@FXML
 	public void btnGetAQuote_Click(ActionEvent event) throws IOException {
 
-		Driver driver = new Driver();
+		DriverModel driver = new DriverModel();
 		driver.setFirst_name(txtFirstName.getText());
 		driver.setLast_name(txtLastName.getText());
 

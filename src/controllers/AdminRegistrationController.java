@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import utility.HashPassword;
 
 public class AdminRegistrationController implements Initializable {
 
@@ -59,7 +60,7 @@ public class AdminRegistrationController implements Initializable {
 	}
 
     @FXML
-     public void btnsubmit_click(ActionEvent event) throws IOException, SQLException {
+     public void btnsubmit_click(ActionEvent event) throws Exception {
     	
     	DbConnect conn = new DbConnect();
     	
@@ -67,9 +68,12 @@ public class AdminRegistrationController implements Initializable {
     	
     	PreparedStatement preparedStatement = conn.prepareStatement(signUpAdminScript);
 
+    	String hashedPassword = HashPassword.getHashedPasswordString(txtPassword.getText());   	
+    	
+    	
 		preparedStatement.setString(1, txtUserName.getText());
-		preparedStatement.setString(2, txtPassword.getText());
-		preparedStatement.setString(3, txtName.getText());
+		preparedStatement.setString(2, hashedPassword);
+		preparedStatement.setString(3, txtName.getText());	
 		
 		preparedStatement.executeUpdate();
     	
@@ -86,5 +90,4 @@ public class AdminRegistrationController implements Initializable {
 	    stage.close();
 
     }
-
 }
